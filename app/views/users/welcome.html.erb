@@ -1,0 +1,33 @@
+<h1>Welcome back, <%= @current_user.full_name %>!</h1>
+<hr>
+<br>
+<form action="/" method="get">
+  <input type="submit" value="Log Out" />
+</form>
+<hr>
+<br>
+<h3> Welcome to your blog! To create a new blog post, type in a title and a message, and click <em>Blog!</em></h3>
+<br>
+<br>
+<form action='/users/welcome' method='post'>
+  Title: <br>
+  <input type="text" name="post_title" id='title' required/><br>
+  Message:<br>
+  <input type="text" name="post_message" id='mesg' required/><br>
+  <input type="submit" value="Blog!" />
+</form>
+<br>
+<br>
+<hr>
+<%if @current_user.blogs.length > 0 %>
+
+  <% @current_user.blogs.reverse_each do |blog| %>
+    <%= blog.title %> <br>
+    <%= blog.message %> <br>
+    <br>
+    <hr>
+  <% end %>
+
+<% else %>
+<h2><em>Write your very first blog post today!</em></h2>
+<% end %>
